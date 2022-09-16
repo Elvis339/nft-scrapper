@@ -1,0 +1,12 @@
+{
+  "name": "nft-scraper",
+  "version": "1.0.0",
+  "description": "scrape keywords on nft projects",
+  "main": "index.js",
+  "author": "Elvis Sabanovic <elvissabanovic3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^17.1.3",
+    "sqlite3": "^5.1.1"
+  }
+}
