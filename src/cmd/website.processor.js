@@ -37,11 +37,7 @@ const traverse = async (browser, newUrl) => {
 }
 
 (async () => {
-    const browser = await puppeteer.launch({
-        headless: false,
-        defaultViewport: null,
-        args: ['--start-maximized']
-    })
+    const browser = await puppeteer.launch()
     try {
         console.log('--WEBSITE PROCESSOR START PROCESSING', {
             url,
@@ -50,16 +46,7 @@ const traverse = async (browser, newUrl) => {
         const page = await browser.newPage()
         await page.goto(url, { waitUntil: 'load', timeout: 10_000 })
         const hrefs = await page.$$eval('a', links => links.map(a => a.href));
-        const uniqueHrefs = [...new Set(hrefs)].filter(x => {
-            const exclude = ['youtube', 'medium', 'discord', 'twitter', 'reddit', 'bamboohr', 'github', 'gitlab', 'store', 'app']
-
-            for (const exclusion of exclude) {
-                if (x.includes(exclusion)) {
-                    return false
-                }
-            }
-            return true
-        })
+        const uniqueHrefs = [...new Set(hrefs)].filter(href => href.includes(url))
         updateHyperLinks(db, uniqueHrefs, url).catch(console.error)
         await contains(page, url)
 

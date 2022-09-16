@@ -1,3 +1,5 @@
 node_modules
 scrapper
 websites/*
+.idea
+.vs_code

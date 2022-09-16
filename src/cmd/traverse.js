@@ -44,7 +44,7 @@ const traverse = async (db, argv) => {
         const uriToTraverse = Array.from(normalizeHrefArray(hrefs))
         let rootUrl = ''
 
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < uriToTraverse.length; i++) {
             let uri = uriToTraverse[i]
             rootUrl = 'https://opensea.io'.concat(uri)
             const thread = fork(path.join(__dirname, 'opensea.processor.js'), [
